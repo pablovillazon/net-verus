@@ -1,0 +1,22 @@
+<main>
+  <header>
+    <h1>Verus Companies</h1>
+    <p>Submit a company, then browse or search what has been stored.</p>
+  </header>
+
+  <section class="card">
+    <app-company-form (created)="onCreated()" />
+  </section>
+
+  <section class="card">
+    <h2>Stored companies</h2>
+    <form class="search" (submit)="$event.preventDefault(); search(box.value)">
+      <input #box type="search" aria-label="Search companies" placeholder="Search by name or domain…" [value]="query()" />
+      <button type="submit">Search</button>
+      @if (query()) {
+        <button type="button" class="secondary" (click)="clearSearch(); box.value = ''">Clear</button>
+      }
+    </form>
+    <app-company-list [companies]="companies()" [loading]="loading()" [error]="loadError()" />
+  </section>
+</main>

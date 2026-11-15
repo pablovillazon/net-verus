@@ -1,0 +1,32 @@
+@if (error(); as message) {
+  <p class="alert error" role="alert">{{ message }}</p>
+} @else if (loading()) {
+  <p>Loading…</p>
+} @else if (companies().length === 0) {
+  <p class="empty">No companies found.</p>
+} @else {
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Website</th>
+        <th>Added</th>
+        @if (showScore()) {
+          <th>Relevance</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (company of companies(); track company.id) {
+        <tr>
+          <td>{{ company.name }}</td>
+          <td><a [href]="company.websiteUrl" target="_blank" rel="noopener noreferrer">{{ company.domain }}</a></td>
+          <td>{{ company.createdAtUtc | date: 'medium' }}</td>
+          @if (showScore()) {
+            <td>{{ (company.searchScore ?? 0) * 100 | number: '1.0-0' }}%</td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+}

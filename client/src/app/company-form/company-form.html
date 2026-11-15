@@ -1,0 +1,28 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <h2>Submit a company</h2>
+
+  <label for="name">Company name</label>
+  <input id="name" type="text" formControlName="name" autocomplete="organization" placeholder="Example" />
+  @if (form.controls.name.touched && form.controls.name.hasError('required')) {
+    <p class="field-error">Company name is required.</p>
+  }
+
+  <label for="websiteUrl">Website URL</label>
+  <input id="websiteUrl" type="url" formControlName="websiteUrl" placeholder="https://www.example.com" />
+  @if (form.controls.websiteUrl.touched && form.controls.websiteUrl.hasError('required')) {
+    <p class="field-error">Website URL is required.</p>
+  }
+
+  <button type="submit" [disabled]="submitting()">{{ submitting() ? 'Submitting…' : 'Submit' }}</button>
+
+  @if (errors().length > 0) {
+    <ul class="alert error" role="alert">
+      @for (message of errors(); track message) {
+        <li>{{ message }}</li>
+      }
+    </ul>
+  }
+  @if (success(); as message) {
+    <p class="alert success" role="status">{{ message }}</p>
+  }
+</form>
