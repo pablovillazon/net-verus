@@ -29,6 +29,9 @@ dotnet test            # backend: unit + HTTP-level tests
 cd client && npm test  # frontend
 ```
 
+## Continuous integration
+`.github/workflows/ci.yml` runs on every push and pull request: the backend job restores, builds in Release (warnings are errors) and runs `dotnet test` (TRX results are uploaded as an artifact); the frontend job runs `npm ci`, `ng build` and `ng test`.
+
 ## Try the API
 ```bash
 # create (201)
