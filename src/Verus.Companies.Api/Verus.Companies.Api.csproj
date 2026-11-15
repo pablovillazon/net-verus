@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="..\Verus.Companies.Application\Verus.Companies.Application.csproj" />
+    <ProjectReference Include="..\Verus.Companies.Infrastructure\Verus.Companies.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

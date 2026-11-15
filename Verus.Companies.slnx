@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Verus.Companies.Domain/Verus.Companies.Domain.csproj" />
+    <Project Path="src/Verus.Companies.Application/Verus.Companies.Application.csproj" />
+    <Project Path="src/Verus.Companies.Infrastructure/Verus.Companies.Infrastructure.csproj" />
+    <Project Path="src/Verus.Companies.Api/Verus.Companies.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Verus.Companies.Tests/Verus.Companies.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Verus.Companies.Domain\Verus.Companies.Domain.csproj" />
+  </ItemGroup>
+</Project>
