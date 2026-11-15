@@ -2,13 +2,17 @@
   <PropertyGroup>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <!-- xunit analyzers are stricter than the production code needs; do not let them break the build. -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="10.0.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Verus.Companies.Api\Verus.Companies.Api.csproj" />
     <ProjectReference Include="..\..\src\Verus.Companies.Application\Verus.Companies.Application.csproj" />
     <ProjectReference Include="..\..\src\Verus.Companies.Infrastructure\Verus.Companies.Infrastructure.csproj" />
   </ItemGroup>

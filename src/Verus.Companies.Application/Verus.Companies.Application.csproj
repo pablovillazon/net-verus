@@ -2,4 +2,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Verus.Companies.Domain\Verus.Companies.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Used only for Microsoft.Extensions.* abstractions (logging, options, DI). No ASP.NET Core
+         types are used here; ArchitectureTests enforces that. -->
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <InternalsVisibleTo Include="Verus.Companies.Tests" />
+  </ItemGroup>
 </Project>

@@ -1,16 +1,38 @@
 namespace Verus.Companies.Domain;
 
 /// <summary>
-/// Core domain entity. Immutable by design: once a company has been validated and
-/// created, it never changes in place (updates will produce a new instance, which
-/// keeps the in-memory store safe to share across threads without locking).
+/// Core domain entity. Immutable by design: once a company has been validated and created it never
+/// changes in place (updates will produce a new instance), which keeps the in-memory store safe to
+/// share across threads without locking. The constructor enforces invariants so an invalid
+/// <see cref="Company"/> can never exist, regardless of which caller creates it.
 /// </summary>
 public sealed class Company
 {
     public Company(Guid id, string name, Uri websiteUrl, DateTimeOffset createdAtUtc)
     {
+        if (id == Guid.Empty)
+        {
+            throw new ArgumentException("A company requires a non-empty id.", nameof(id));
+        }
+
+        ArgumentException.ThrowIfNullOrWhiteSpace(name);
+        ArgumentNullException.ThrowIfNull(websiteUrl);
+
+        var trimmed = name.Trim();
+        if (trimmed.Length is < CompanyRules.NameMinLength or > CompanyRules.NameMaxLength)
+        {
+            throw new ArgumentException(
+                $"Company name must be between {CompanyRules.NameMinLength} and {CompanyRules.NameMaxLength} characters.",
+                nameof(name));
+        }
+
+        if (!websiteUrl.IsAbsoluteUri)
+        {
+            throw new ArgumentException("Website URL must be absolute.", nameof(websiteUrl));
+        }
+
         Id = id;
-        Name = name;
+        Name = trimmed;
         WebsiteUrl = websiteUrl;
         CreatedAtUtc = createdAtUtc;
     }

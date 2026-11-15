@@ -4,5 +4,6 @@
   </ItemGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <InternalsVisibleTo Include="Verus.Companies.Tests" />
   </ItemGroup>
 </Project>

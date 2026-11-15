@@ -1,7 +1,13 @@
 namespace Verus.Companies.Application.Contracts;
 
 /// <summary>
-/// Outbound contract. The only shape of a company that ever leaves the application layer;
-/// the domain entity and the storage structures stay internal.
+/// Outbound contract; the only shape of a company that ever leaves the application layer.
+/// <paramref name="SearchScore"/> is only populated for relevance searches (<c>?q=</c>).
 /// </summary>
-public sealed record CompanyResponse(Guid Id, string Name, string WebsiteUrl, DateTimeOffset CreatedAtUtc);
+public sealed record CompanyResponse(
+    Guid Id,
+    string Name,
+    string WebsiteUrl,
+    string Domain,
+    DateTimeOffset CreatedAtUtc,
+    double? SearchScore = null);
